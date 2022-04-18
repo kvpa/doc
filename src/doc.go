@@ -25,7 +25,27 @@ func showFileDoc(path string) {
 }
 
 func showFolderDoc(path string) {
-	// Send all documentation from a folder to the standard output.
+	nodes, err := os.ReadDir(path)
+
+	if err != nil {
+		strerr := "doc: Can't read contents of '" + path + "'.\n"
+		os.Stderr.WriteString(strerr)
+		os.Exit(1)
+	}
+
+	for i := 0; i < len(nodes); i++ {
+		nodePath := path + "/" + nodes[i].Name()
+
+		if nodes[i].IsDir() {
+			showFolderDoc(nodePath)
+		} else {
+			showFileDoc(nodePath)
+		}
+
+		if i != len(nodes)-1 {
+			os.Stdout.WriteString("\n\n")
+		}
+	}
 }
 
 func main() {
