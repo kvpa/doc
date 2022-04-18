@@ -1,0 +1,26 @@
+COMMANDS                                                                     DOC
+
+NAME
+    doc - view system documentation
+
+INVOCATION
+    doc [TOPIC]
+
+DESCRIPTION
+    Sends the system documentation (for a TOPIC, if specified) to the standard
+    output. TOPIC is simply the path to a text file containing the documentation
+    on the required topic.
+
+    TOPIC can be:
+
+      1. An absolute path.
+
+      2. A path relative to "/doc/" if TOPIC has no preceding "./" or "../"
+
+      3. A path relative to the current folder if TOPIC has a preceding "./" or
+         "../"
+
+    If TOPIC is a folder, the contents of the folder are sent to the standard
+    output, in alphabetical order and recursively (if subdirectories are
+    present). If no TOPIC is specified, the contents of "/doc/" are sent to the
+    standard output in a similar fashion.
